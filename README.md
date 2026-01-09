@@ -85,3 +85,4 @@ mypy Application/src/
 
 MIT License
 Yash Shah
+Vatsal Patel
