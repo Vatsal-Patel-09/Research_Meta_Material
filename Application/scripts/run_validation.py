@@ -114,8 +114,27 @@ def run_validation():
     # =========================================================================
     print_section("3. META-DISSIPATION ANALYSIS")
     
-    result_pc = compute_meta_dissipation(matrices_pc)
-    result_am = compute_meta_dissipation(matrices_am)
+    # Prepare parameter dictionaries for alpha weight calculation
+    pc_param_dict = {
+        'm1': pc_params.m1,
+        'm2': pc_params.m2,
+        'k1': pc_params.k1,
+        'k2': pc_params.k2,
+        'c1': pc_params.c1,
+        'c2': pc_params.c2,
+    }
+    
+    am_param_dict = {
+        'm1': am_params.m1,
+        'm2': am_params.m2,
+        'k1': am_params.k1,
+        'k2': am_params.k2,
+        'c1': am_params.c1,
+        'c2': am_params.c2,
+    }
+    
+    result_pc = compute_meta_dissipation(matrices_pc, system_type='PC', params=pc_param_dict)
+    result_am = compute_meta_dissipation(matrices_am, system_type='AM', params=am_param_dict)
     
     print("\nPhononic Crystal Results:")
     print(f"  Natural frequencies: ω₁={result_pc.modal_params.omega[0]:.2f}, "
